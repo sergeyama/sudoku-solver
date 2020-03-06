@@ -23,6 +23,41 @@ namespace Sudoku
         public MainWindow()
         {
             InitializeComponent();
+
+            #region Инициализация тестого набора
+
+            int[,] data = new int[9, 9] {
+                { 0, 0, 0, 0, 4, 7, 0, 0, 8 },
+                { 0, 8, 0, 0, 0, 5, 0, 0, 0 },
+                { 0, 0, 2, 8, 0, 0, 1, 9, 0 },
+                { 0, 4, 0, 0, 8, 0, 0, 0, 0 },
+                { 0, 0, 7, 4, 0, 0, 0, 0, 0 },
+                { 1, 0, 0, 0, 2, 0, 0, 7, 0 },
+                { 9, 0, 0, 0, 0, 0, 6, 0, 0 },
+                { 2, 0, 1, 0, 0, 0, 0, 3, 0 },
+                { 0, 0, 0, 0, 7, 0, 2, 0, 0 }
+            };
+            int r = 3;
+
+            for (int i = 0; i < 9; i++)
+            {
+                if (i < 3) r = 3;
+                if (i > 2 && i < 6) r = 12;
+                if (i > 5) r = 21;
+
+                for (int j = 0; j < 9; j++)
+                {
+                    MainGrid.Children.OfType<TextBox>().FirstOrDefault(o => o.Name == $"TextBoxX{j + 1}Y{i + 1}R{r / 3}").Text = data[i, j].ToString();
+                    r++;
+                }
+            }
+
+            #endregion
+        }
+
+        private void TextBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            
         }
     }
 }
