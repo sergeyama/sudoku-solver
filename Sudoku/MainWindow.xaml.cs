@@ -20,8 +20,8 @@ namespace Sudoku
     /// </summary>
     public partial class MainWindow : Window
     {
-        private int[,] grid;
-        private Dictionary<string, List<int>> dataValues = new Dictionary<string, List<int>>();
+        private int[,] testExample;
+        private Grid grid = new Grid();
 
         public MainWindow()
         {
@@ -29,7 +29,7 @@ namespace Sudoku
 
             #region Инициализация тестого набора
 
-            grid = new int[9, 9] {
+            testExample = new int[9, 9] {
                 { 0, 0, 0, 0, 4, 7, 0, 0, 8 },
                 { 0, 8, 0, 0, 0, 5, 0, 0, 0 },
                 { 0, 0, 2, 8, 0, 0, 1, 9, 0 },
@@ -50,14 +50,13 @@ namespace Sudoku
 
                 for (int j = 0; j < 9; j++)
                 {
-                    if (grid[i, j] != 0)
+                    if (testExample[i, j] != 0)
                     {
-                        MainGrid.Children.OfType<TextBox>().FirstOrDefault(o => o.Name == $"TextBoxX{j + 1}Y{i + 1}R{r / 3}").Text = grid[i, j].ToString();
-                        dataValues.Add($"TextBoxX{j + 1}Y{i + 1}R{r / 3}", null);
+                        MainGrid.Children.OfType<TextBox>().FirstOrDefault(o => o.Name == $"TextBoxX{j + 1}Y{i + 1}R{r / 3}").Text = testExample[i, j].ToString();
                     }
                     else
                     {
-                        dataValues.Add($"TextBoxX{j + 1}Y{i + 1}R{r / 3}", new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
+                        grid[$"TextBoxX{j + 1}Y{i + 1}R{r / 3}"] = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
                     }
                         
                     r++;
