@@ -1,10 +1,9 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Sudoku
 {
-    public class Grid
+    public class Grid : IEnumerable
     {
         private Dictionary<string, List<int>> dataValues;
 
@@ -100,13 +99,18 @@ namespace Sudoku
         {
             get
             {
-                return new List<int>();
+                return dataValues[name];
             }
 
             set
             {
                 dataValues[name] = value;
             }
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            return ((IEnumerable)dataValues).GetEnumerator();
         }
     }
 }
