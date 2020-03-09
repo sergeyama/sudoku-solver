@@ -102,6 +102,17 @@ namespace Sudoku
             }
         }
 
+        public List<Cell> GetGroupCells(int x = 0, int y = 0, int r = 0)
+        {
+            List<Cell> groupCells = new List<Cell>();
+            
+            groupCells.AddRange(_dataValues.Where(o => o.X == x && o.Y != y));
+            groupCells.AddRange(_dataValues.Where(o => o.Y == y && o.X != x));
+            groupCells.AddRange(_dataValues.Where(o => o.R == r && o.X != x && o.Y != y));
+
+            return groupCells;
+        }
+
         public int this[string name]
         {
             get
