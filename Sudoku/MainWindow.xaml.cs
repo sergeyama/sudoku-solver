@@ -43,13 +43,27 @@ namespace Sudoku
 
             grid = new Grid(testExample);
 
-            foreach (Cell item in grid)
-            {
-                if(item.Value != 0)
-                    MainGrid.Children.OfType<TextBox>().FirstOrDefault(o => o.Name == item.Name).Text = item.Value.ToString();
-            }
+            RePaintGrid();
 
             #endregion
+
+            Solver solver = new Solver(grid);
+            solver.SolveIt();
+            RePaintGrid();
+        }
+
+        public void RePaintGrid()
+        {
+            foreach (Cell item in grid)
+            {
+                if (item.IsActive && item.Value != 0)
+                {
+                    MainGrid.Children.OfType<TextBox>().FirstOrDefault(o => o.Name == item.Name).Foreground = Brushes.Green;
+                }
+
+                if (item.Value != 0)
+                    MainGrid.Children.OfType<TextBox>().FirstOrDefault(o => o.Name == item.Name).Text = item.Value.ToString();                
+            }
         }
 
         private void TextBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
