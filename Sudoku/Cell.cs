@@ -1,20 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Sudoku
 {
-    public struct Cell
+    public class Cell
     {
         public string Name { get; set; }
         public int Value { get; set; }
         public bool IsActive { get; }
         public List<int> PossibleValues { get; set; }
+        public int X { get; }
+        public int Y { get; }
+        public int R { get; }
 
         public Cell(string name, int value)
         {
             Name = name;            
             Value = value;
+            X = Convert.ToInt32(name[8]);
+            Y = Convert.ToInt32(name[10]);
+            R = Convert.ToInt32(name[12]);
 
             if (Value == 0)
             {
@@ -22,10 +27,7 @@ namespace Sudoku
                 IsActive = true;
             }
             else
-            {
                 PossibleValues = null;
-                IsActive = false;
-            }                
         }
     }
 }

@@ -102,11 +102,16 @@ namespace Sudoku
             }
         }
 
-        public Cell this[string name]
+        public int this[string name]
         {
             get
             {
-                return _dataValues.First(o => o.Name == name);
+                return _dataValues.First(o => o.Name == name).Value;
+            }
+            
+            set
+            {
+                _dataValues.First(o => o.Name == name).Value = value;
             }
         }
 
