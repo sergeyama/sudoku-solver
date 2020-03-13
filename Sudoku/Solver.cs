@@ -16,19 +16,7 @@ namespace Sudoku
 
         public void SolveIt()
         {
-            foreach (Cell item in _grid)
-            {
-                if (item.IsActive)
-                {
-                    var groupCells = _grid.GetGroupCells(item.X, item.Y, item.R);
-
-                    foreach (Cell cell in groupCells)
-                    {
-                        if (!cell.IsActive)
-                            item.PossibleValues.Remove(cell.Value);
-                    }                    
-                }
-            }
+            SetPossibleValues();
 
             foreach (Cell item in _grid)
             {
@@ -51,6 +39,22 @@ namespace Sudoku
                             item.Value = number;
                             item.PossibleValues = null;
                         }
+                    }
+                }
+            }
+        }
+
+        private void SetPossibleValues()
+        {
+            foreach (Cell item in _grid)
+            {
+                if (item.IsActive)
+                {
+                    var groupCells = _grid.GetGroupCells(item.X, item.Y, item.R);
+
+                    foreach (Cell cell in groupCells)
+                    {
+                        item.PossibleValues.Remove(cell.Value);
                     }
                 }
             }
