@@ -24,10 +24,12 @@ namespace Sudoku
                 {
                     var groupCells = _grid.GetGroupCells(item.X, item.Y, item.R);
                     groupCells = groupCells.Where(o => o.R == item.R && o.PossibleValues != null).ToList();
-                    int hasMatch = 0;
+                    int hasMatch;
 
                     foreach (int number in item.PossibleValues)
                     {
+                        hasMatch = 0;
+
                         foreach (Cell cell in groupCells)
                         {
                             if (cell.PossibleValues.Contains(number))
