@@ -38,6 +38,7 @@ namespace Sudoku
                         {
                             item.Value = number;
                             item.PossibleValues = null;
+                            item.IsActive = false;
                         }
                     }
                 }

@@ -56,13 +56,27 @@ namespace Sudoku
         {
             foreach (Cell item in grid)
             {
-                if (item.IsActive && item.Value != 0)
-                {
-                    MainGrid.Children.OfType<TextBox>().FirstOrDefault(o => o.Name == item.Name).Foreground = Brushes.Green;
-                }
+                var cell = MainGrid.Children.OfType<TextBox>().FirstOrDefault(o => o.Name == item.Name);
 
                 if (item.Value != 0)
-                    MainGrid.Children.OfType<TextBox>().FirstOrDefault(o => o.Name == item.Name).Text = item.Value.ToString();                
+                {
+                    cell.Foreground = item.Color;
+                    cell.FontSize = 36;
+                    cell.Text = item.Value.ToString();
+                }                    
+                else
+                {
+                    cell.Foreground = Brushes.DarkRed;
+                    cell.Text = "";
+                }
+
+                if (item.PossibleValues != null)
+                {
+                    foreach (var number in item.PossibleValues)
+                    {
+                        cell.Text += number.ToString() + " ";
+                    }
+                }                
             }
         }
 

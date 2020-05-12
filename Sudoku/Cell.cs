@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Media;
 
 namespace Sudoku
 {
@@ -7,7 +8,8 @@ namespace Sudoku
     {
         public string Name { get; set; }
         public int Value { get; set; }
-        public bool IsActive { get; }
+        public bool IsActive { get; set; }
+        public Brush Color { get; }
         public List<int> PossibleValues { get; set; }
         public int X { get; }
         public int Y { get; }
@@ -25,9 +27,13 @@ namespace Sudoku
             {
                 PossibleValues = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
                 IsActive = true;
+                Color = Brushes.Green;
             }
             else
+            {
                 PossibleValues = null;
+                Color = Brushes.Black;
+            }                
         }
     }
 }
