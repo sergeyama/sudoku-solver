@@ -4,10 +4,20 @@ using System.Linq;
 
 namespace Sudoku
 {
+    /// <summary>
+    /// Класс игрового поля.
+    /// </summary>
     public class Grid : IEnumerable
     {
+        /// <summary>
+        /// Список всех ячеек поля.
+        /// </summary>
         private List<Cell> _dataValues = new List<Cell>();
 
+        /// <summary>
+        /// Создание поля из набора входных данных.
+        /// </summary>
+        /// <param name="data">Массив значений поля.</param>
         public Grid(int[] data)
         {
             string[] names = new string[81]
@@ -102,6 +112,13 @@ namespace Sudoku
             }
         }
 
+        /// <summary>
+        /// Получение всех связанных ячеек.
+        /// </summary>
+        /// <param name="x">Положение ячейки относительно оси X.</param>
+        /// <param name="y">Положение ячейки относительно оси Y.</param>
+        /// <param name="r">Положение ячейки относительно квадрата из 9 ячеек.</param>
+        /// <returns>Список всех связанных ячеек.</returns>
         public List<Cell> GetGroupCells(int x = 0, int y = 0, int r = 0)
         {
             List<Cell> groupCells = new List<Cell>();
@@ -113,6 +130,11 @@ namespace Sudoku
             return groupCells;
         }
 
+        /// <summary>
+        /// Индексатор по имени.
+        /// </summary>
+        /// <param name="name">Название ячейки.</param>
+        /// <returns>Значение ячейки.</returns>
         public int this[string name]
         {
             get
@@ -126,6 +148,10 @@ namespace Sudoku
             }
         }
 
+        /// <summary>
+        /// Метод для перебора экземпляра класса как списка ячеек.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerator GetEnumerator()
         {
             return _dataValues.GetEnumerator();

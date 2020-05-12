@@ -5,15 +5,28 @@ using System.Linq;
 
 namespace Sudoku
 {
+    /// <summary>
+    /// Класс решения головоломки.
+    /// </summary>
     public class Solver
     {
+        /// <summary>
+        /// Игровое поле.
+        /// </summary>
         private Grid _grid;
 
+        /// <summary>
+        /// Создание решения для конкретного поля.
+        /// </summary>
+        /// <param name="grid">Игровое поле.</param>
         public Solver(Grid grid)
         {
             _grid = grid;
         }
 
+        /// <summary>
+        /// Основной метод для решения головоломки.
+        /// </summary>
         public void SolveIt()
         {
             SetPossibleValues();
@@ -47,6 +60,9 @@ namespace Sudoku
             }
         }
 
+        /// <summary>
+        /// Убирает дубликаты значений связанных ячеек в списке возможных значений всех ячеек.
+        /// </summary>
         private void SetPossibleValues()
         {
             foreach (Cell item in _grid)

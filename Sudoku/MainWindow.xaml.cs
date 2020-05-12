@@ -52,6 +52,9 @@ namespace Sudoku
             RePaintGrid();
         }
 
+        /// <summary>
+        /// Отрисовка головоломки
+        /// </summary>
         public void RePaintGrid()
         {
             foreach (Cell item in grid)
