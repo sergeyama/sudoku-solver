@@ -52,9 +52,9 @@ namespace Sudoku
             //Получение имени, значения и координат из парсинга имени ячейки.
             Name = name;            
             Value = value;
-            X = Convert.ToInt32(name[8]);
-            Y = Convert.ToInt32(name[10]);
-            R = Convert.ToInt32(name[12]);
+            X = int.Parse(name[8].ToString());
+            Y = int.Parse(name[10].ToString());
+            R = int.Parse(name[12].ToString());
 
             if (Value == 0)
             {
