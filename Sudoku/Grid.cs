@@ -123,12 +123,21 @@ namespace Sudoku
         {
             List<Cell> groupCells = new List<Cell>();
             
-            groupCells.AddRange(_dataValues.Where(o => o.X == x && o.Y != y));
-            groupCells.AddRange(_dataValues.Where(o => o.Y == y && o.X != x));
-            groupCells.AddRange(_dataValues.Where(o => o.R == r && o.X != x && o.Y != y));
+            groupCells.AddRange(_dataValues.Where(o => o.X == x && o.Y != y).ToList());
+            groupCells.AddRange(_dataValues.Where(o => o.Y == y && o.X != x).ToList());
+            groupCells.AddRange(GetRectungleGroupCells(x, y, r));
 
             return groupCells;
         }
+
+        /// <summary>
+        /// Получение связанных ячеек в одном квадрате.
+        /// </summary>
+        /// <param name="x">Положение ячейки относительно оси X.</param>
+        /// <param name="y">Положение ячейки относительно оси Y.</param>
+        /// <param name="r">Положение ячейки относительно квадрата из 9 ячеек.</param>
+        /// <returns>Список всех связанных ячеек в одном квадрате.</returns>
+        public List<Cell> GetRectungleGroupCells(int x = 0, int y = 0, int r = 0) => _dataValues.Where(o => o.R == r && o.X != x && o.Y != y).ToList();
 
         /// <summary>
         /// Индексатор по имени.
