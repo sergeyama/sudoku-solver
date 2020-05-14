@@ -125,7 +125,7 @@ namespace Sudoku
             
             groupCells.AddRange(_dataValues.Where(o => o.X == x && o.Y != y).ToList());
             groupCells.AddRange(_dataValues.Where(o => o.Y == y && o.X != x).ToList());
-            groupCells.AddRange(GetRectungleGroupCells(x, y, r));
+            groupCells.AddRange(GetRectungleGroupCells(r, x, y));
 
             return groupCells;
         }
@@ -137,7 +137,7 @@ namespace Sudoku
         /// <param name="y">Положение ячейки относительно оси Y.</param>
         /// <param name="r">Положение ячейки относительно квадрата из 9 ячеек.</param>
         /// <returns>Список всех связанных ячеек в одном квадрате.</returns>
-        public List<Cell> GetRectungleGroupCells(int x = 0, int y = 0, int r = 0) => _dataValues.Where(o => o.R == r && o.X != x && o.Y != y).ToList();
+        public List<Cell> GetRectungleGroupCells(int r, int x = 0, int y = 0) => _dataValues.Where(o => o.R == r && o.X != x && o.Y != y).ToList();
 
         /// <summary>
         /// Индексатор по имени.
